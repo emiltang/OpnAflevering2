@@ -1,0 +1,63 @@
+Fil til besvarelse af spørgsmål angående 2. afleveringsopgave.
+
+For en komplet besvarelse bør du kunne beskrive de pågældende
+ændringer for 1-3 samt svare positivt på 4-5. Spørgsmål 'X' er
+valgfrit at besvare.
+
+
+(1) Opsummer de væsentligste ændringer du har lavet ved programmet for
+at introducere brugen af Java RMI.
+
+Programmet er delt op i to pakker, server pakken repræsenterer
+domænelaget samt serveren, Client laget repreæsenterer klienten og
+guilaget.
+
+I server pakken er der introduceret en klasse, hvis formål udelukkende
+er at starte serveren. Det gøres ved at starte et nyt RMI register og
+putte et nyt Catalog objekt i.
+
+I client laget er der lavet følgenede ændringer. I ClientControllers
+constructorblev der før oprettet et catalog objekt, det er ændret så
+der i stedet hentes en refferance til et remote objekt fra det
+førnævnte  RMI register. (Under "moterhjelmen" bliver der oprettet et
+proxy objekt på client siden, men det vedrøere ikke implentationen)
+
+Derudover er det flere steder brugt exception handling til at håndtere
+RemoteExceptions.
+
+(2) Hvad har du specifikt gjort for at lave CatalogImpl og EntryImpl
+til distribuerede proxy objekter?
+
+* IEntry og ICatalog intefacet arver fra klassen Remote og metoderne
+er markeret med throws RemoteException da de kaster denne exception.
+
+* EntryImpl og CatalogImpl nedarver fra UnicastRemoteObject.
+
+(3) Hvad har du specifikt gjort for at Product objekter kopieres fra
+server til klient?
+
+* Product implementerer Serializable intefacet.
+* Product har en equals og hascode metode, sådan at to kopierede objecter kan tjekkes om de har samme state.
+
+(4) Fungerer den distribuerede version af dit program, således at den
+samme funktionalitet som før er bibeholdt, set fra GUIens perspektiv?
+Hvordan er det testet?
+
+Ja, funktionaliteten er den samme, der kan både inc og dec stock. Søge funktionen virker også.
+
+Det er testet ved at prøve programmet før det blev gjort distribueret og prøvet efter.
+
+(5) Fungerer det hvis flere klienter tilgår serveren på samme tid, og
+manipulerer de den samme, delte tilstand?  (Det er ikke påkrævet at
+ændringer fra en klient umiddelbart er synlige på de andre klienter,
+men de bør være synlige efter lokale ændringer i tilstanden.)  Hvordan
+er det testet?
+
+Der er implementeret observer pattern, derved er det tydeligt at se ændinger hvis to klienter åbnes.
+
+(X) Ekstra spørgsmål, ikke nødvendigt at besvare! Kan du ændre
+programmet ved at introducere en distribueret version af
+observer-patternet, således at ændringer fra en klient umiddelbart er
+synlige på skærmen for de andre klienter?
+
+Ja.

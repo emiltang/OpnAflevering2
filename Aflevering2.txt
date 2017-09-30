@@ -1,0 +1,41 @@
+Instruktioner til 2. afleveringsopgave.
+
+(Se Blackboard for specifikke instrukser omkring aflevering.)
+
+OPGAVEN
+
+Formålet med denne opgave er, at lave en distribueret version af det
+vedlagte program.  Programmet følger den samme, minimale 3-lags
+arkitektur som jeg har anvendt i de fleste andre eksempler: et GUI
+(indkapslet i en enkelt klasse), en controller som indeholder
+applikationens logik (ligeledes indkapslet i en enkelt klasse), og
+model-laget som er beskrevet ved en samling klasser.
+
+Konkret skal I adskille programmet i to dele, en klient og en server.
+Klient-delen skal indeholder GUI og controller klasserne, server-delen
+skal indeholde alle klasserne fra model-laget. Det skal således være
+muligt for flere klienter at forbinde sig til den samme server på
+samme tid, og dermed dele deres tilstand. Det er ikke påkrævet at
+client og server kører på to fysisk forskellige maskiner, men de skal
+køre i hver deres JVM.
+
+Det ønskes at distributionen implementeres således at objekter af
+klasserne CatalogImpl og EntryImpl repræsenteres på klienten ved
+proxy-objekter, hvorimod objekter af klassen Product skal kopieres fra
+server til klient. Det er ønskværdigt at controller klassen
+(ClientController) og model-klasserne ikke ændres væsentligt - der må
+*selvfølgelig* gerne indføres ny funktionalitet til at håndtere
+distribution samt de fejl der kan opstå ved distribuerede kald, men
+det ønskes at bibeholde cirka samme klasse-hierarki og cirka samme
+opbygning af logikken i de enkelte metoder.
+
+Java RMI er som bekendt perfekt til at indføre distribution netop på
+denne måde, hvorfor det også er den teknologi I skal anvende her.
+
+BESVARING
+
+Opgaven som beskrevet ovenfor bedes løst, og tekst-filen Besvarelse.txt
+bedes rettes som følger: for hvert spørgsmål fundet i denne fil, indsæt
+svaret direkte i filen. Dette fungerer implicit som et kvalitets-check
+af jeres løsning, løsningen er kun komplet hvis du kan svare positivt
+på alle spørgsmålene.
